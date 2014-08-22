@@ -38,7 +38,7 @@ void init(int argc, char* argv[])
 {
     // initialize OpenGL
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(W, H);
     
     glutIdleFunc(idle);
@@ -63,8 +63,7 @@ void display()
 
 
   sw.GetTime();
-  int curtime = ((sw.cur_tick) * 1000) / sw.ticks_per_sec;
-  int ms = (int)curtime;
+  __int64 curtime = ((sw.cur_tick) * 1000) / sw.ticks_per_sec;
 
   int nbits = 16;
 
@@ -73,7 +72,7 @@ void display()
   glBegin(GL_QUADS);
   for (int bit = nbits - 1; bit >= 0; bit--)
   {
-    if ((ms & (1 << bit)) != 0)
+    if ((curtime & (1ll << bit)) != 0)
     {
       int loc_id = nbits - 1 - bit;
 
@@ -90,8 +89,8 @@ void display()
   }
   glEnd();
 
-  glFlush();
-  //glutSwapBuffers();
+  //glFlush();
+  glutSwapBuffers();
 }
 
 void keypress(unsigned char key, int x, int y)
