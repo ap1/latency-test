@@ -4,4 +4,4 @@ The laptop display did show a lot of tearing, did not notice that on the externa
 
 Screenshot:
 
-![Image](../blob/master/plan.png?raw=true)
+![Image](../master/plan.png?raw=true)
